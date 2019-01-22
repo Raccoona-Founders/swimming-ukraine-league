@@ -1,0 +1,15 @@
+{
+  "name": "swimming-ukraine-league",
+  "version": "1.0.0",
+  "description": "Swimming Ukraine League",
+  "repository": "https://github.com/Raccoona-Crypto",
+  "scripts": {
+    "install": "npm run build-all",
+    "preserve": "npm run build-all",
+    "serve": "firebase serve",
+    "predeploy": "npm run build-all",
+    "deploy": "firebase deploy",
+    "build-all": "npm run build-functions",
+    "build-functions": "cd 'functions' && npm install"
+  }
+}
