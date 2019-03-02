@@ -15,13 +15,12 @@
     "front-prod": "cross-env NODE_ENV=production webpack --config ./webpack.config.js --mode=production -p --progress --hide-modules"
   },
   "dependencies": {
-    "a": "^2.1.2",
     "firebase": "5.8.2",
-    "lodash": "4.17.4",
-    "react": "15.5.4",
-    "react-dom": "15.5.4",
-    "react-router": "4.1.1",
-    "react-router-dom": "4.1.1"
+    "lodash": "^4.17.11",
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
     "autoprefixer-loader": "^3.2.0",
@@ -35,6 +34,7 @@
     "css-loader": "^2.1.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "node-sass": "^4.7.2",
+    "postcss-loader": "^3.0.0",
     "sass-loader": "^6.0.6",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3"
