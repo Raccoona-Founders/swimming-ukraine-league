@@ -5,30 +5,13 @@ import {inject, observer} from 'mobx-react';
 @observer
 export default class Home extends React.Component {
     render() {
-        const {User} = this.props;
-
-        console.log(User.authUser);
-
-        if (User.loading) {
-            return <div>Await</div>;
-        }
-
-        if (User.authUser) {
-            return (
-                <div>
-                    <div>{User.authUser.displayName}</div>
-                    <button onClick={() => User.logout()}>Logout</button>
-                </div>
-            );
-        }
+        const { User } = this.props;
 
         return (
-            <div>
-                <div>Please, login</div>
-                <button onClick={() => User.loginViaGoogle()}>
-                    Google Login
-                </button>
-            </div>
+            <section>
+                <h1>Вот ты и на главной странице!</h1>
+                <div>{User.authUser.displayName}</div>
+            </section>
         );
     }
 }

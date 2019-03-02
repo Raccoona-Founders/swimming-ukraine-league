@@ -1,8 +1,15 @@
-body {
+html, body, * {
     box-sizing: border-box;
-    background: linear-gradient(to top, #fff, #000);
 }
 
-#test {
-    background-color: #fff;
+body {
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #333333;
+
+    padding-top: 70px;
+    min-height: 100vh;
 }
+
+@import './header.scss';

@@ -34,14 +34,7 @@ const config = {
             {
                 test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
-                query: {
-                    presets: ['react'],
-                    plugins: [
-                        'transform-decorators-legacy',
-                        'transform-class-properties'
-                    ]
-                }
+                loader: 'babel-loader'
             },
             {
                 test: /\.scss$/,

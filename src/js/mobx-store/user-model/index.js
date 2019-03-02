@@ -1,4 +1,4 @@
-import {observable, action} from 'mobx';
+import {observable, action, runInAction} from 'mobx';
 import firebase from 'firebase/app';
 
 export default class UserModel {
@@ -20,27 +20,27 @@ export default class UserModel {
         const provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
-        this.auth.signInWithPopup(provider).then((result) => {
-            const token = result.credential.accessToken;
-            const user = result.user;
+        return this.auth.signInWithPopup(provider)
+            .then(result => {
+                if (result.user) {
+                    runInAction(() => {
+                        this.authUser = result.user;
+                    });
+                }
 
-            console.log(result);
-        }).catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            const email = error.email;
-            const credential = error.credential;
-
-            console.log(error);
-        });
+                return result;
+            });
     };
 
     logout = () => {
-        this.auth.signOut();
+        return this.auth.signOut();
     };
 
     @action handlerAuthStateChanged = (authUser) => {
-        this.authUser = authUser ? authUser : undefined;
+        this.authUser = authUser
+            ? authUser
+            : undefined;
+
         this.loading = false;
     };
 }
