@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+        "lib": [
+            "es6"
+        ],
+        "module": "commonjs",
+        "skipLibCheck": true,
+        "noImplicitAny": false,
+        "noImplicitReturns": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "outDir": "lib",
+        "sourceMap": true,
+        "target": "es6",
+        "rootDirs": [
+            "./src"
+        ],
+        "baseUrl": "./src",
+        "typeRoots": [
+            "src/definitions",
+            "node_modules/@types"
+        ]
+    },
+    "compileOnSave": true,
+    "include": [
+        "src/**/*"
+    ]
+}

@@ -1,7 +1,8 @@
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
-const express = require('express');
+import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
+import * as express from 'express';
 
+import htmlTemplate from './html-template';
 
 admin.initializeApp();
 let expressApp = express();
@@ -18,6 +19,7 @@ apiRouter.get('/', (req, res) => {
 expressApp.use('/api', apiRouter);
 
 expressApp.get('*', (req, res) => {
+<<<<<<< HEAD:functions/index.js
     const content = `<!DOCTYPE html><html>
 <head><title>I'me alive!</title></head>
 <body>
@@ -25,9 +27,12 @@ expressApp.get('*', (req, res) => {
     <script src="/js/main.bundle.js"></script>
 </body>
 </html>`;
+=======
+    const content = htmlTemplate;
+>>>>>>> 216f2052f0bf8211e85e80da3995c06421700893:functions/src/index.ts
 
     res.send(content);
 });
 
 // configure app here, add routes, whatever
-exports.app = functions.https.onRequest(expressApp);
+export const app = functions.https.onRequest(expressApp);
