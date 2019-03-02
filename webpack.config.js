@@ -36,7 +36,11 @@ const config = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 query: {
-                    presets: ['react']
+                    presets: ['react'],
+                    plugins: [
+                        'transform-decorators-legacy',
+                        'transform-class-properties'
+                    ]
                 }
             },
             {

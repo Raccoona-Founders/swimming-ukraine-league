@@ -15,16 +15,20 @@
     "front-prod": "cross-env NODE_ENV=production webpack --config ./webpack.config.js --mode=production -p --progress --hide-modules"
   },
   "dependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "firebase": "5.8.2",
     "history": "^4.7.2",
     "lodash": "4.17.4",
+    "mobx": "5.9.0",
+    "mobx-react": "5.4.3",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.3.0",
     "autoprefixer-loader": "^3.2.0",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",

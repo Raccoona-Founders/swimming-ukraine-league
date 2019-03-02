@@ -4,11 +4,21 @@ export default `<!DOCTYPE html>
 <title>Sea star</title>
 <link rel="icon" href="/favicon.png" sizes="256x256" />
 <style>
-
+.initial-awaiting-section {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ccc;
+    font-size: 20px;
+}
 </style>
 </head>
 <body>
-    <div id="ReactAppRoot"><h1>I'm alive!</h1></div>
+    <div id="ReactAppRoot"><div class="initial-awaiting-section">Loading...</div></div>
     <script src="/js/main.bundle.js"></script>
 </body>
 </html>
