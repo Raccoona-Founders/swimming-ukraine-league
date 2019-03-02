@@ -8,7 +8,7 @@ export default `<!DOCTYPE html>
 </style>
 </head>
 <body>
-    <div><h1>I'm alive!</h1></div>
+    <div id="ReactAppRoot"><h1>I'm alive!</h1></div>
     <script src="/js/main.bundle.js"></script>
 </body>
 </html>
