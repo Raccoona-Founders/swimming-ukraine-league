@@ -21,7 +21,7 @@ expressApp.get('*', (req, res) => {
     const content = `<!DOCTYPE html><html>
 <head><title>I'me alive!</title></head>
 <body>
-    <h1>I'm alive!</h1>
+    <div id='root'></div>
     <script src="/js/main.bundle.js"></script>
 </body>
 </html>`;
