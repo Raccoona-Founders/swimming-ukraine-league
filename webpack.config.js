@@ -42,7 +42,6 @@ const config = {
             {
                 test: /\.scss$/,
                 use: ExtractTextPlugin.extract({
-                    // use: ['css-loader', 'autoprefixer-loader?safe=true', 'sass-loader']
                     use: ['css-loader', 'sass-loader']
                 })
             }
@@ -53,15 +52,5 @@ const config = {
         new ExtractTextPlugin('./css/main.css')
     ]
 };
-
-if (NODE_ENV === 'production') {
-    config.plugins.push(
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        })
-    );
-}
 
 module.exports = config;

@@ -1,5 +1,6 @@
-body, html {
-
+body {
+    box-sizing: border-box;
+    background: linear-gradient(to top, #fff, #000);
 }
 
 #test {
