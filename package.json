@@ -15,7 +15,6 @@
     "front-prod": "cross-env NODE_ENV=production webpack --config ./webpack.config.js --mode=production -p --progress --hide-modules"
   },
   "dependencies": {
-    "a": "^2.1.2",
     "firebase": "5.8.2",
     "lodash": "4.17.4",
     "react": "15.5.4",

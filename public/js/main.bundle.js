@@ -77,7 +77,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/Users/sireks/projects/swimming-ukraine-league/public";
+/******/ 	__webpack_require__.p = "/Users/m-tymchyk/projects/raccoona/swimming-ukraine-league/public";
 /******/
 /******/
 /******/ 	// Load entry module and return exports
@@ -90,10 +90,11 @@
 /*!************************!*\
   !*** ./src/js/main.js ***!
   \************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("// Compile SCSS to CSS\n__webpack_require__(/*! ../scss/main.scss */ \"./src/scss/main.scss\");\n\nconsole.log('Hello world');\n\n//# sourceURL=webpack:///./src/js/main.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../scss/main.scss */ \"./src/scss/main.scss\");\n/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_scss_main_scss__WEBPACK_IMPORTED_MODULE_0__);\n// Compile SCSS to CSS\n\n\nconsole.log('Hello world');\n\n//# sourceURL=webpack:///./src/js/main.js?");
 
 /***/ }),
 
