@@ -11,8 +11,15 @@ const Path = {
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 const config = {
+    resolve: {
+        extensions: ['.js', '.jsx', '.json', '.css', '.scss'],
+        modules: [
+            Path.src,
+            path.resolve(__dirname, 'node_modules')
+        ]
+    },
     entry: {
-        main: Path.src + '/js/main.js'
+        main: Path.src + '/js/main.jsx'
     },
     output: {
         path: Path.public,
@@ -25,9 +32,12 @@ const config = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                query: {
+                    presets: ['react']
+                }
             },
             {
                 test: /\.scss$/,
@@ -41,6 +51,6 @@ const config = {
         new webpack.NoEmitOnErrorsPlugin(),
         new ExtractTextPlugin('./css/main.css')
     ]
-}
+};
 
 module.exports = config;

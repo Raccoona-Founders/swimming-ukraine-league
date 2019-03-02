@@ -15,10 +15,12 @@
     "front-prod": "cross-env NODE_ENV=production webpack --config ./webpack.config.js --mode=production -p --progress --hide-modules"
   },
   "dependencies": {
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "firebase": "5.8.2",
-    "lodash": "^4.17.11",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
+    "history": "^4.7.2",
+    "lodash": "4.17.4",
+    "react": "16.8.3",
+    "react-dom": "16.8.3",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1"
   },
@@ -26,7 +28,7 @@
     "autoprefixer-loader": "^3.2.0",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
