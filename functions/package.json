@@ -1,6 +1,7 @@
 {
     "name": "functions",
     "description": "Cloud Functions for Firebase",
+    "main": "lib/index.js",
     "scripts": {
         "lint": "tslint --project tsconfig.json",
         "build": "tsc",
@@ -21,7 +22,7 @@
         "eslint-plugin-promise": "^3.6.0",
         "@types/uuid": "3.4.4",
         "tslint": "5.8.0",
-        "typescript": "2.8.4"
+        "typescript": "3.3.3"
     },
     "private": true
 }

@@ -10,6 +10,6 @@
     "predeploy": "npm run build-all",
     "deploy": "firebase deploy",
     "build-all": "npm run build-functions",
-    "build-functions": "cd 'functions' && npm install"
+    "build-functions": "cd 'functions' && npm run build"
   }
 }
