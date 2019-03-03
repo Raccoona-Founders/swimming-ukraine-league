@@ -1,25 +1,16 @@
 import * as functions from 'firebase-functions';
-import * as admin from 'firebase-admin';
+import './firestore';
 import * as express from 'express';
 
 import htmlTemplate from './html-template';
+import apiRouter from './api-router';
 
-admin.initializeApp();
 let expressApp = express();
-let apiRouter = express.Router();
-
-
-apiRouter.get('/', (req, res) => {
-    res.send(JSON.stringify({
-        success: true,
-        testSuccess: true,
-    }));
-});
 
 expressApp.use('/api', apiRouter);
 
 expressApp.get('*', (req, res) => {
-    const content = htmlTemplate
+    const content = htmlTemplate;
 
     res.send(content);
 });

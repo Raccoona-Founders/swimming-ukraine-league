@@ -1,20 +1,28 @@
 import React from 'react';
-import {Switch, Router, Route} from 'react-router';
 import {createBrowserHistory} from 'history';
+import {Provider} from 'mobx-react';
 
-import Home from './pages/home';
+import {createMobxStore} from './mobx-store'
+
+
+import AppRouter from './app-router';
 
 const history = createBrowserHistory();
 
 export default class Application extends React.Component {
+    mobxStore;
+
+    constructor(props) {
+        super(props);
+
+        this.mobxStore = createMobxStore();
+    }
+
     render() {
         return (
-            <Router history={history}>
-                <Switch>
-                    <Route path="/" component={Home}/>
-                    <Route path="*" render={() => <div>Page 404</div>}/>
-                </Switch>
-            </Router>
+            <Provider {...this.mobxStore}>
+                <AppRouter history={history}/>
+            </Provider>
         );
     }
 }
