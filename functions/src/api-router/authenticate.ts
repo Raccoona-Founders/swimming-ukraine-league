@@ -7,21 +7,21 @@ async function resolveUser(decodedIdToken: admin.auth.DecodedIdToken): Promise<O
     const userRef = db.collection('users')
         .doc(decodedIdToken.uid);
 
-    const snapshot = await userRef.get();
-    if (snapshot.exists) {
-        return snapshot;
+    let snapshot = await userRef.get();
+    if (!snapshot.exists) {
+        await userRef.set({
+            displayName: user.displayName || '',
+            phoneNumber: user.phoneNumber || '',
+            photoUrl: user.photoURL || '',
+            email: user.email || '',
+            role: 'user',
+            creationTime: admin.firestore.Timestamp.now()
+        });
     }
 
-    await userRef.set({
-        displayName: user.displayName,
-        phoneNumber: user.phoneNumber,
-        photoUrl: user.photoURL,
-        email: user.email,
-        role: 'user',
-        creationTime: admin.firestore.Timestamp.now()
-    });
+    snapshot = await userRef.get();
 
-    return await userRef.get();
+    return snapshot.data();
 }
 
 
