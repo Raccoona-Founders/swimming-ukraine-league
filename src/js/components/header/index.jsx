@@ -12,11 +12,11 @@ export default class Header extends React.Component {
         return (
             <header className="header">
                 <div className="header-content">
-                    {User.authUser ? (
-                        <div>{User.authUser.displayName}</div>
+                    {User.resolveAuthUser ? (
+                        <div>{User.resolveAuthUser.displayName}</div>
                     ) : <div>Ты будешь круче!</div>}
 
-                    {User.authUser ? (
+                    {User.resolveAuthUser ? (
                         <button onClick={this.__onLogout}>Logout</button>
                     ) : <div />}
                 </div>

@@ -21,7 +21,7 @@ export default class Login extends React.Component {
 
         let { from } = this.props.location.state || { from: { pathname: '/' } };
 
-        if (User.authUser) {
+        if (User.resolveAuthUser) {
             history.push(from.pathname);
             return;
         }

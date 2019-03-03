@@ -10,7 +10,7 @@ export default class Home extends React.Component {
         return (
             <section>
                 <h1>Вот ты и на главной странице!</h1>
-                <div>{User.authUser.displayName}</div>
+                <div>{User.resolveAuthUser.displayName}</div>
             </section>
         );
     }

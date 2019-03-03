@@ -1,5 +1,6 @@
-import {observable, action, runInAction} from 'mobx';
+import { observable, action, runInAction } from 'mobx';
 import firebase from 'firebase/app';
+import ApiClient from '../../common/api-client';
 
 export default class UserModel {
     firebaseApp;
@@ -7,6 +8,8 @@ export default class UserModel {
 
     @observable loading = true;
     @observable authUser;
+    @observable me;
+    @observable apiClient;
 
     constructor(firebaseApp) {
         this.firebaseApp = firebaseApp;
@@ -16,20 +19,19 @@ export default class UserModel {
         this.auth.onAuthStateChanged(this.handlerAuthStateChanged);
     }
 
-    loginViaGoogle = () => {
+    loginViaGoogle = async () => {
         const provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
 
-        return this.auth.signInWithPopup(provider)
-            .then(result => {
-                if (result.user) {
-                    runInAction(() => {
-                        this.authUser = result.user;
-                    });
-                }
+        const result = await this.auth.signInWithPopup(provider);
 
-                return result;
-            });
+        console.log(result);
+
+        if (result.user) {
+            this.resolveAuthUser(result.user);
+        }
+
+        return result;
     };
 
     logout = () => {
@@ -37,10 +39,41 @@ export default class UserModel {
     };
 
     @action handlerAuthStateChanged = (authUser) => {
-        this.authUser = authUser
-            ? authUser
-            : undefined;
-
         this.loading = false;
+
+        if (this.authUser && !authUser) {
+            this.authUser = undefined;
+            this.apiClient = undefined;
+            this.me = undefined;
+        }
+
+        if (!this.authUser && authUser) {
+            this.resolveAuthUser(authUser);
+        }
     };
+
+    @action resolveAuthUser(authUser) {
+        this.authUser = authUser;
+
+        this.resolveCurrentUser().catch(() => {
+            this.authUser = undefined;
+        });
+    }
+
+    @action
+    async resolveCurrentUser() {
+        const authToken = await this.authUser.getIdToken();
+
+        console.log(authToken);
+
+        runInAction(() => {
+            this.apiClient = new ApiClient(authToken);
+        });
+
+        const me = await this.apiClient.getMe();
+
+        runInAction(() => {
+            this.me = me;
+        });
+    }
 }

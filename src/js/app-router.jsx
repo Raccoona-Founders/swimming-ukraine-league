@@ -20,7 +20,7 @@ export default class AppRouter extends React.Component {
 
         return (
             <Router history={this.props.history}>
-                <div>
+                <div style={{ paddingTop: 70 }}>
                     <Header />
 
                     <Switch>

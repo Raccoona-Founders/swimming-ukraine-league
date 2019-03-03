@@ -15,6 +15,7 @@
     "front-prod": "cross-env NODE_ENV=production webpack --config ./webpack.config.js --mode=production -p --progress --hide-modules"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.5",
     "firebase": "5.8.2",
