@@ -6,24 +6,6 @@ import { withRouter } from 'react-router';
 @withRouter
 @observer
 export default class Header extends React.Component {
-    render() {
-        const {User} = this.props;
-
-        return (
-            <header className="header">
-                <div className="header-content">
-                    {User.resolveAuthUser ? (
-                        <div>{User.resolveAuthUser.displayName}</div>
-                    ) : <div>Ты будешь круче!</div>}
-
-                    {User.resolveAuthUser ? (
-                        <button onClick={this.__onLogout}>Logout</button>
-                    ) : <div />}
-                </div>
-            </header>
-        );
-    }
-
     __onLogout = () => {
         const {User, history} = this.props;
 
@@ -34,4 +16,25 @@ export default class Header extends React.Component {
     __onLogin = () => {
         this.props.history.push('/login');
     };
+
+    render() {
+        const {User} = this.props;
+
+        return (    
+            <header>
+                Test
+            </header>        
+            // <header className="header">
+            //     <div className="header-content">
+            //         {User.resolveAuthUser ? (
+            //             <div>{User.resolveAuthUser.displayName}</div>
+            //         ) : <div>Ты будешь круче!</div>}
+
+            //         {User.resolveAuthUser ? (
+            //             <button onClick={this.__onLogout}>Logout</button>
+            //         ) : <div />}
+            //     </div>
+            // </header>
+        );
+    }
 }
