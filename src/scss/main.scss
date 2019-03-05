@@ -1,13 +1,21 @@
-html, body, * {
-    box-sizing: border-box;
-}
+// # ---- Helpers ----
+@import "helpers/variables";
+@import "helpers/mixins";
 
-body {
-    font-family: 'Rubik', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    color: #333333;
-    min-height: 100vh;
-}
+// # ---- Base ----
+@import "base/reset";
+@import "base/typography";
+@import "base/keyframes";
+@import "base/base";
 
-@import './header.scss';
+// # ---- Layouts ----
+@import "layouts/layouts";
+
+// # ---- Utilities ----
+@import "utilities";
+
+// # ---- Components ----
+@import "components/header";
+
+// # ---- Shame ----
+@import "shame";

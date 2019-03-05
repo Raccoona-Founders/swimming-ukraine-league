@@ -1,0 +1,16 @@
+.l-container {
+    margin: 0 auto;
+
+    display: inline-block;
+    max-width: 1155px;
+    width: 100%;
+}
+
+.l-content {
+    padding: 0 70px;
+}
+
+// # Media
+@include res-to(1023px) {
+
+}

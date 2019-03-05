@@ -1,0 +1,102 @@
+/*
+*
+* Media queries
+*
+*/
+@mixin res($from: false, $to: false) {
+    $media: "all";
+
+    @if ($from) {
+        $media: "#{$media} and (min-width : #{$from})";
+    }
+
+    @if ($to) {
+        $media: "#{$media} and (max-width : #{$to})";
+    }
+
+    @media #{$media} {
+        @content;
+    }
+}
+
+@mixin res-from($from) {
+    @include res($from, false) {
+        @content;
+    }
+}
+
+@mixin res-to($to) {
+    @include res(false, $to) {
+        @content;
+    }
+}
+
+
+/*
+  *
+  * Resize child block to all size of closest
+  * position: relative parent
+  *
+  */
+@mixin full-size() {
+    height: 100%;
+    width: 100%;
+}
+
+
+/*
+  *
+  * Inline block mixins
+  *
+  */
+@mixin inline-block() {
+    display: inline-block;
+    vertical-align: top;
+}
+
+// Spaces between inline-blocks
+@mixin magic-margin-reset() {
+    font-size: 0;
+}
+
+
+/*
+  *
+  * Safari position fixed on bottom toolbar hide fix
+  * (add on container that contains background)
+  *
+  */
+@mixin mobSafariScrollFix() {
+    padding-bottom: 70px;
+    transform: translateY(70px);
+
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: -70px;
+}
+
+
+/*
+  *
+  * Placeholders
+  *
+  */
+@mixin placeholder() {
+    &::-webkit-input-placeholder {
+        @content;
+    }
+
+    &:-moz-placeholder {
+        @content;
+    }
+
+    &::-moz-placeholder {
+        @content;
+    }
+
+    &:-ms-input-placeholder {
+        @content;
+    }
+}

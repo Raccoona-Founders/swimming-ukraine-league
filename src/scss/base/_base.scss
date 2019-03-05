@@ -1,0 +1,23 @@
+html,
+body {
+  margin: 0 auto;
+  min-height: 100vh;
+  max-width: 1920px; //
+}
+
+body {
+  background-color: #ffffff;
+//   font-family: '';
+  font-weight: 300;
+  overflow-x: hidden;
+  text-align: center;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-user-drag: none;
+
+//   @include magic-margin-reset;  
+}
