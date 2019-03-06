@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
-import {inject, observer} from 'mobx-react';
-import {Switch, Router, Route} from 'react-router';
+import { inject, observer } from 'mobx-react';
+import { Switch, Router, Route } from 'react-router';
 
 import PrivateRoute from './components/private-route';
 import Header from './components/header';
@@ -20,15 +20,15 @@ export default class AppRouter extends React.Component {
 
         return (
             <Router history={this.props.history}>
-                <Fragment>
+                <div style={{ paddingTop: 70 }}>
                     <Header />
 
                     <Switch>
                         <PrivateRoute path="/" component={Home} exact />
                         <Route path="/login" component={Login} />
-                        <Route path="*" render={() => <div>Page 404</div>}/>
+                        <Route path="*" render={() => <div>Page 404</div>} />
                     </Switch>
-                </Fragment>
+                </div>
             </Router>
         );
     }

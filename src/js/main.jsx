@@ -5,8 +5,6 @@ import App from './app';
 // Compile SCSS to CSS
 import '../scss/main.scss';
 
-console.log('Hello world');
-
 (() => {
     const ReactAppRoot = document.getElementById('ReactAppRoot');
     if (!ReactAppRoot) {

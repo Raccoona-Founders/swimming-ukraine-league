@@ -1,7 +1,7 @@
 export default `<!DOCTYPE html>
 <html>
 <head>
-<title>Sea star</title>
+<title>Sea star cabinet</title>
 <link rel="icon" href="/favicon.png" sizes="256x256" />
 <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700&amp;subset=cyrillic" rel="stylesheet" />
 <link rel="stylesheet" href="/css/main.css" />

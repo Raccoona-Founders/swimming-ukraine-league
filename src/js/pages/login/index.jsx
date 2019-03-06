@@ -1,5 +1,5 @@
 import React from 'react';
-import {inject, observer} from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 
 @inject('User')
 @observer
@@ -8,25 +8,24 @@ export default class Login extends React.Component {
         return (
             <div>
                 <h1>Войдит что бы стать круче!</h1>
-
-                <button onClick={this.__onGoogleLogin}>
-                    Через Google
-                </button>
+                <button onClick={this.__onGoogleLogin}>Через Google</button>
             </div>
         );
     }
 
     __onGoogleLogin = () => {
-        const { User, history } = this.props;
+        const {User, history} = this.props;
 
-        let { from } = this.props.location.state || { from: { pathname: '/' } };
+        let {from} = this.props.location.state || {from: {pathname: '/'}};
 
-        if (User.resolveAuthUser) {
+        if (User.authUser) {
             history.push(from.pathname);
+
             return;
         }
 
         User.loginViaGoogle()
-            .then(result => history.push(from.pathname));
+            .then(result => history.push(from.pathname))
+            .catch(error => console.warn(error));
     }
 }

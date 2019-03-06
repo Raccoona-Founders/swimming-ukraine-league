@@ -12,7 +12,7 @@ export default class PrivateRoute extends React.Component {
             <Route
                 {...rest}
                 render={props =>
-                    User.resolveAuthUser ? (
+                    User.authUser ? (
                         <Component {...props} />
                     ) : (
                         <Redirect

@@ -21,7 +21,7 @@ export default class Application extends React.Component {
     render() {
         return (
             <Provider {...this.mobxStore}>
-                <AppRouter history={history}/>
+                <AppRouter history={history} />
             </Provider>
         );
     }
