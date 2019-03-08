@@ -1,26 +1,92 @@
-header {
-    display: block;
-}
-
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(240, 240, 240, 0.2);
-    box-shadow: 0 1px 0 0 rgba(180, 180, 180, 0.2);
+    background-color: $white;
+    box-shadow: 0 1px 12px 0 rgba(0,0,0,0.1);
+    padding: 0 40px;
 
-    &-content {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        height: 70px;
+    height: 60px;
+    width: 100%;
 
-        width: 100%;
-        max-width: 1280px;
-        padding: 0 20px;
+
+    &__container {
+        max-width: 1200px;
         margin: 0 auto;
+
+        @include full-size;
+    }
+
+    &__top,
+    &__body {
+        @include inline-block;
+    }
+
+    &__top {
+        height: 100%;
+        width: 90px;
+    }
+
+    &__body {
+        height: 100%;
+        width: calc(100% - 90px);
+    }
+
+    &__logo {
+        background-color: $pink;
+        margin-top: 15px;
+
+        height: 30px;
+        width: 100%;
+    }
+
+    &__humb {
+        display: none;
+    }
+
+    &__nav {
+        padding-left: 80px;
+        margin-top: 20px;
+
+        &-item {
+            color: $darkgray;
+            font-size: 15px;
+            letter-spacing: 0.01em;
+            margin-right: 40px;
+            transition: color 0.2s ease;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &:hover {
+                color: $blue;
+            }
+        }
+    }
+
+    &__auth {
+        position: absolute;
+        top: 15px;
+        right: 0;
+
+        &-logout {
+            border: 1px solid $blue;
+            border-radius: 15px;
+            color: $blue;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 28px; 
+            padding: 0 24px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+
+            height: 30px;
+
+            &:hover {
+                background-color: $blue;
+                color: $white;
+            }
+        }
     }
 }
 
+
+// # Media header will be later

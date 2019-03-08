@@ -1,15 +1,16 @@
 html,
 body {
   margin: 0 auto;
+  overflow-x: hidden;
+
   min-height: 100vh;
-  max-width: 1920px; //
+  max-width: 1920px; 
 }
 
 body {
   background-color: #ffffff;
-//   font-family: '';
+  font-family: $font-rubik;
   font-weight: 300;
-  overflow-x: hidden;
   text-align: center;
 
   -webkit-font-smoothing: antialiased;

@@ -1,10 +1,8 @@
 import React from 'react';
-import {createBrowserHistory} from 'history';
-import {Provider} from 'mobx-react';
+import { createBrowserHistory } from 'history';
+import { Provider } from 'mobx-react';
 
-import {createMobxStore} from './mobx-store'
-
-
+import { createMobxStore } from './mobx-store'
 import AppRouter from './app-router';
 
 const history = createBrowserHistory();
