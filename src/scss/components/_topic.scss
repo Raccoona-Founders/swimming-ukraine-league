@@ -1,0 +1,35 @@
+.topic {
+    margin: 64px 0 40px;
+
+    &__title {
+        color: $darkgray;
+        font-size: 32px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        line-height: 0.8em;
+    }
+
+    &__button {
+        background-color: $pink;
+        box-shadow: 0 3px 8px 0 rgba(111, 126, 255, 0.1);
+        border-radius: 4px;
+        color: $white;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 26px; 
+        padding: 0 30px;
+        transition: background-color 0.2s ease, color 0.2s ease;
+
+        position: absolute;
+        top: -1px;
+        right: 0;
+
+        height: 32px;
+
+        &:hover {
+            background-color: $white;
+            color: $pink;
+        }
+    }
+}

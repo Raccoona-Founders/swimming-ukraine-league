@@ -1,16 +1,16 @@
 .header {
     background-color: $white;
     box-shadow: 0 1px 12px 0 rgba(0,0,0,0.1);
-    padding: 0 40px;
 
     height: 60px;
     width: 100%;
 
 
     &__container {
-        max-width: 1200px;
         margin: 0 auto;
+        padding: 0 70px;
 
+        max-width: 1340px;
         @include full-size;
     }
 
@@ -30,7 +30,7 @@
     }
 
     &__logo {
-        background-color: $pink;
+        background-color: $blue;
         margin-top: 15px;
 
         height: 30px;
@@ -67,12 +67,12 @@
         top: 15px;
         right: 0;
 
-        &-logout {
+        &-button {
             border: 1px solid $blue;
-            border-radius: 15px;
+            border-radius: 4px;
             color: $blue;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 300;
             line-height: 28px; 
             padding: 0 24px;
@@ -88,5 +88,21 @@
     }
 }
 
+
+
+// # Modifiers
+.header {
+    &__nav {
+        &-item {
+            &--for-admin {
+                color: $pink;
+
+                &:hover {
+                    color: $pink-hover;
+                }
+            }
+        }
+    }
+}
 
 // # Media header will be later

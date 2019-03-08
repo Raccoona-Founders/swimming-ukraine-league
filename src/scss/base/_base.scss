@@ -8,7 +8,7 @@ body {
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #f5f6ff;
   font-family: $font-rubik;
   font-weight: 300;
   text-align: center;
@@ -20,5 +20,9 @@ body {
   -ms-text-size-adjust: 100%;
   -webkit-user-drag: none;
 
-//   @include magic-margin-reset;  
+  @include magic-margin-reset;
+}
+
+main {
+  text-align: center;
 }

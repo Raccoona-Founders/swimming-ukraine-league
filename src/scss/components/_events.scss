@@ -1,0 +1,119 @@
+.events {
+    &__sorter {
+        background-color: $white;
+        border-bottom: 1px solid #eff0ff;
+        border-radius: 4px 4px 0 0;
+        box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);
+        padding: 20px 35px 0;
+
+        height: 60px;
+        width: 100%;
+
+        &-title,
+        &-date,
+        &-place {
+            color: $darkgray;
+            font-size: 16px;
+
+            @include inline-block;
+        }
+
+        &-title {
+            width: calc(100% - 480px);
+        }
+
+        &-title,
+        &-date {
+            cursor: pointer;
+            transition: color 0.2s ease;
+
+            & span {
+                &:before {
+                    content: '';
+                    border: 4px solid transparent;
+                    border-top: 6px solid $darkgray;
+
+                    transform-origin: 50% 25%;
+                    transition: transform 0.2s ease, border-color 0.2s ease;
+    
+                    position: absolute;
+                    top: 8px;
+                    right: -15px;
+                }
+            }
+
+            &:hover {
+                color: $blue;
+
+                & span {
+                    &:before {
+                        border-top-color: $blue;
+                    }
+                }
+            }
+        }
+
+        &-date,
+        &-place {
+            width: 240px;
+        }
+    }
+}
+
+.event-item {
+    background-color: $white;
+    border-bottom: 1px solid #eff0ff;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);
+    padding: 20px 35px 0;
+    transition: background-color 0.2s ease;
+
+    height: 60px;
+    width: 100%;
+
+    &__title,
+    &__date,
+    &__place {
+        color: $darkgray;
+        font-size: 16px;
+        font-weight: 300;
+
+        @include inline-block;
+    }
+
+    &__title {
+        color: $blue;
+
+        width: calc(100% - 480px);
+    }
+
+    &__date,
+    &__place {
+        width: 240px;
+    }
+
+    &:hover {
+        background-color: #f5f6fd;
+    }
+
+    &:last-child {
+        border: 0 0 4px 4px;
+        border-bottom: none;
+        
+    }
+}
+
+
+
+// # States
+.events {
+    &__sorter {
+        &-title,
+        &-date {
+            &.is-active {
+                &:before {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+}

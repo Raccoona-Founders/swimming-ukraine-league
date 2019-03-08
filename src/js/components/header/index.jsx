@@ -58,25 +58,26 @@ export default class Header extends React.Component {
 
                     <div className="header__body">
                         <nav className="header__nav">
-                            { isUserAdmin ? (
-                                <a className="header__nav-item" href="/clubs" onClick={ this.onHeaderLinkClick }>Команды*</a>
-                            ) : '' }
+                            { 
+                                isUserAdmin ? (
+                                    <a className="header__nav-item header__nav-item--for-admin" href="/clubs" onClick={ this.onHeaderLinkClick }>Команды*</a>
+                                ) : ''
+                            }
 
                             <a className="header__nav-item" href="/club" onClick={ this.onHeaderLinkClick }>Команда</a>
                             <a className="header__nav-item" href="/events" onClick={ this.onHeaderLinkClick }>Соревнования</a>
                             <a className="header__nav-item" href="/support" onClick={ this.onHeaderLinkClick }>Обратная связь</a>
                         </nav>
 
-                        {/* For some reasons I can't login/sign up using google now. May be we have some functional mistakes */}
                         <div className="header__auth">
-                            <div className="header__auth-logout" onClick={ this.onLogout }>Выйти</div>
-                        </div> 
-
-                        { User.authUser ? (
-                            <div className="header__auth">
-                                <div className="header__auth-logout" onClick={ this.onLogout }>Выйти</div>
-                            </div> 
-                        ) : '' }
+                            { 
+                                User.authUser ? (
+                                    <div className="header__auth-button" onClick={ this.onLogout }>Выйти</div>
+                                ) : (
+                                    <div className="header__auth-button" onClick={ this.onLogin }>Войти</div>
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
             </header>
