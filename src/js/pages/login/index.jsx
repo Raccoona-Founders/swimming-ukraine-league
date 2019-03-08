@@ -7,7 +7,7 @@ export default class Login extends React.Component {
     render() {
         return (
             <div>
-                <h1>Войдит что бы стать круче!</h1>
+                <h1>Войдите что бы стать круче!</h1>
                 <button onClick={this.__onGoogleLogin}>Через Google</button>
             </div>
         );
