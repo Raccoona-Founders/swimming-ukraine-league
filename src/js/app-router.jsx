@@ -7,6 +7,8 @@ import PrivateRoute from './components/private-route';
 import Header from './components/header';
 import Home from './pages/home';
 import Login from './pages/login';
+import Admin from './pages/admin';
+import Error404 from './pages/error404';
 
 @inject('User')
 @observer
@@ -21,12 +23,18 @@ export default class AppRouter extends React.Component {
         return (
             <Router history={this.props.history}>
                 <Fragment>
-                    <Header />
+                    <Header/>
 
                     <Switch>
-                        <PrivateRoute path="/" component={Home} exact />
-                        <Route path="/login" component={Login} />
-                        <Route path="*" render={() => <div>Page 404</div>} />
+                        <PrivateRoute path="/" component={Home} exact/>
+                        <Route path="/login" component={Login}/>
+
+                        <PrivateRoute onlyAdmin={true}
+                                      path="/clubs"
+                                      component={Admin.Clubs}
+                        />
+
+                        <Route path="*" component={Error404}/>
                     </Switch>
                 </Fragment>
             </Router>

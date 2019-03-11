@@ -1,53 +1,25 @@
 import React from 'react';
-import {inject, observer} from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 @inject('User')
 @withRouter
 @observer
 export default class Header extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            isUserAdmin: 'true' // later we need to think about this property, becouse we need to detect the user permitions to show him more functional if needed. For development its just fine
-        }
-
-        this.onLogout = this.__onLogout.bind(this);
-        this.onLogin = this.__onLogin.bind(this);
-        this.onHeaderLinkClick = this.__onHeaderLinkClick.bind(this);
-    }
-
-    __onLogout = () => {
-        const {User, history} = this.props;
-
-        history.push('/login');
-        User.logout();
-    };
-
-    __onLogin = () => {
-        this.props.history.push('/login');
-    };
-
-    __onHeaderLinkClick = (event) => {
-        const { target } = event;
-
-        event.preventDefault();
-
-        this.props.history.push(target.getAttribute('href'));
-    }
 
     render() {
         const { User } = this.props;
-        const { isUserAdmin } = this.state;
+
+        console.log(User.user);
 
         return (
             <header className="header u-center">
                 <div className="header__container">
                     <div className="header__top">
-                        <a className="header__logo" href="/" onClick={ this.onHeaderLinkClick }>
+                        <Link className="header__logo" to="/">
                             {/* Here I will add svg logo */}
-                        </a>
+                        </Link>
 
                         <div className="header__humb">
                             <span></span>
@@ -57,30 +29,60 @@ export default class Header extends React.Component {
                     </div>
 
                     <div className="header__body">
-                        <nav className="header__nav">
-                            { 
-                                isUserAdmin ? (
-                                    <a className="header__nav-item header__nav-item--for-admin" href="/clubs" onClick={ this.onHeaderLinkClick }>Команды*</a>
-                                ) : ''
-                            }
-
-                            <a className="header__nav-item" href="/club" onClick={ this.onHeaderLinkClick }>Команда</a>
-                            <a className="header__nav-item" href="/events" onClick={ this.onHeaderLinkClick }>Соревнования</a>
-                            <a className="header__nav-item" href="/support" onClick={ this.onHeaderLinkClick }>Обратная связь</a>
-                        </nav>
+                        {this.__renderNavigation()}
 
                         <div className="header__auth">
-                            { 
-                                User.authUser ? (
-                                    <div className="header__auth-button" onClick={ this.onLogout }>Выйти</div>
-                                ) : (
-                                    <div className="header__auth-button" onClick={ this.onLogin }>Войти</div>
-                                )
-                            }
+                            {User.user ? (
+                                <button className="header__auth-button"
+                                        onClick={this.__onLogout}
+                                >Выйти</button>
+                            ) : (
+                                <Link className="header__auth-button"
+                                      to="/login"
+                                >Войти</Link>
+                            )}
                         </div>
                     </div>
                 </div>
             </header>
         );
     }
+
+    __renderNavigation = () => {
+        const { User } = this.props;
+
+        if (!User.user) {
+            return undefined;
+        }
+
+        return (
+            <nav className="header__nav">
+                {
+                    User.isAdmin() ? (
+                        <Link
+                            className="header__nav-item header__nav-item--for-admin"
+                            to="/clubs"
+                        >Команды*</Link>
+                    ) : undefined
+                }
+
+                <Link className="header__nav-item" to="/club">
+                    Команда
+                </Link>
+                <Link className="header__nav-item" to="/events">
+                    Соревнования
+                </Link>
+                <Link className="header__nav-item" to="/support">
+                    Обратная связь
+                </Link>
+            </nav>
+        );
+    };
+
+    __onLogout = () => {
+        const { User, history } = this.props;
+
+        User.logout();
+        history.push('/login');
+    };
 }
