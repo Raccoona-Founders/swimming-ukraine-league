@@ -6,20 +6,31 @@ import { Route, Redirect } from 'react-router-dom';
 @observer
 export default class PrivateRoute extends React.Component {
     render() {
-        const { User, component: Component, ...rest } = this.props;
+        const {
+            User,
+            onlyAdmin = false,
+            component: Component,
+            ...rest
+        } = this.props;
 
         return (
             <Route
                 {...rest}
-                render={props =>
-                    User.authUser ? (
-                        <Component {...props} />
-                    ) : (
-                        <Redirect
+                render={props => {
+                    if (!User.user) {
+                        return <Redirect
                             to={{pathname: '/login', state: { from: props.location }}}
-                        />
-                    )
-                }
+                        />;
+                    }
+
+                    if (onlyAdmin && !User.isAdmin()) {
+                        return <Redirect
+                            to={{pathname: '/' }}
+                        />;
+                    }
+
+                    return <Component {...props} />;
+                }}
             />
         );
     }

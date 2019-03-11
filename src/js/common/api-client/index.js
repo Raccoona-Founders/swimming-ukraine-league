@@ -5,7 +5,7 @@ export default class ApiClient {
 
     constructor(authToken = undefined) {
         this.client = Axios.create({
-            baseURL: location.origin + '/api'
+            baseURL: location.origin + '/api',
         });
 
         if (authToken) {
@@ -13,22 +13,19 @@ export default class ApiClient {
         }
     }
 
-
     setAuthToken(authToken) {
         this.authToken = authToken;
     }
-
 
     removeAuthToken() {
         this.authToken = undefined;
     }
 
-
     async getMe() {
-        const {data} = this.client.get('/me', {
+        const { data } = await this.client.get('/me', {
             headers: {
-                Authorization: `Bearer ${this.authToken}`
-            }
+                Authorization: `Bearer ${this.authToken}`,
+            },
         });
 
         return data;
