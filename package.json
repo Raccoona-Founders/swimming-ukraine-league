@@ -10,7 +10,7 @@
     "predeploy": "npm run build-all",
     "deploy": "firebase deploy",
     "build-all": "npm run build-functions",
-    "build-functions": "cd 'functions' && npm run build",
+    "build-functions": "cd ./functions/ && npm run build",
     "watch": "cross-env NODE_ENV=development webpack --config ./webpack.config.js --mode=development --watch --progress --hide-modules",
     "production": "cross-env NODE_ENV=production webpack --config ./webpack.config.js --mode=production -p --progress --hide-modules"
   },
