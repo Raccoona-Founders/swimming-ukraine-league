@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import Event from './event';
+import React, { Component } from 'react';
+import EventItem from './event-item';
 
 export default class Events extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ export default class Events extends Component {
         const { eventsList } = this.state;
 
         return eventsList.map((eventData) => {
-            return <Event eventData = { eventData } key= { eventData.id }/>
+            return <EventItem eventData = { eventData } key= { eventData.id }/>
         });
     }
 
@@ -66,17 +66,17 @@ export default class Events extends Component {
         const { sortedByName, sortedByDate } = this.state;
 
         return (
-            <section className="events l-container">
-                <div className="l-content">
-                    <div className="topic">
-                        <div className="topic__title">{ sectionTitle }</div>
-                        <button className="topic__button">Добавить*</button>
+            <section className = "events l-container">
+                <div className = "l-content">
+                    <div className = "topic">
+                        <div className = "topic__title">{ sectionTitle }</div>
+                        <button className = "topic__button topic__button--for-admin">Добавить*</button>
                     </div>
 
                     {
                         (eventsList.length > 0) ? (
-                            <Fragment>
-                                <div className="events__sorter">
+                            <div class = "events__container">
+                                <div className = "events__sorter">
                                     <div className = { `events__sorter-title${ (sortedByName) ? ' is-active' : '' }` }
                                          onClick = { this.sortEventsListByTitle }
                                     >
@@ -89,15 +89,15 @@ export default class Events extends Component {
                                         <span>Дата проведения</span>
                                     </div>
                                     
-                                    <div className="events__sorter-place">Место проведения</div>
+                                    <div className = "events__sorter-place">Место проведения</div>
                                 </div>
 
-                                <div className="events__list">
+                                <div className = "events__list">
                                     { this.renderEventItemsList() }
                                 </div>
-                            </Fragment>
+                            </div>
                         ) : (
-                            <div className="events__empty">{ sectionTitle } появятся в скором времени</div>
+                            <div className = "events__empty">{ sectionTitle } появятся в скором времени</div>
                         )
                     }
                 </div>

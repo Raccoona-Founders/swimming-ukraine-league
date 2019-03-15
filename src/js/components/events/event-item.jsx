@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Event(data) {
+export default function EventItem(data) {
     const { id, title, dateStart, dateEnd, city, country } = data.eventData;
 
     return (

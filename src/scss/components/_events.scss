@@ -1,8 +1,11 @@
 .events {
+    &__container {
+        box-shadow: 0 4px 32px 0 rgba(0,0,0,0.1);
+    }
+
     &__sorter {
         background-color: #e8e8e8;
         border-radius: 4px 4px 0 0;
-        box-shadow: 0 1px 8px 0 rgba(0,0,0,0.2);
         padding: 22px 35px 0;
 
         height: 60px;
@@ -63,12 +66,20 @@
 .event-item {
     background-color: $white;
     border-bottom: 1px solid #eeeeee;
-    box-shadow: 0 1px 8px 0 rgba(0,0,0,0.2);
     padding: 21px 35px 0;
     transition: background-color 0.2s ease;
 
     height: 60px;
     width: 100%;
+
+    &:hover {
+        background-color: #f1f1f1;
+    }
+
+    &:last-child {
+        border: 0 0 4px 4px;
+        border-bottom: none;
+    }
 
     &__title,
     &__date,
@@ -88,15 +99,6 @@
     &__date,
     &__place {
         width: 240px;
-    }
-
-    &:hover {
-        background-color: #f1f1f1;
-    }
-
-    &:last-child {
-        border: 0 0 4px 4px;
-        border-bottom: none;
     }
 }
 
