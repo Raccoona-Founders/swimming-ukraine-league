@@ -13,6 +13,7 @@ export default class Events extends Component {
 
         this.renderEventItemsList = this.__renderEventItemsList.bind(this);
         this.sortEventsListByTitle = this.__sortEventsListByTitle.bind(this);
+        this.sortEventsListByDate = this.__sortEventsListByDate.bind(this);
     }
 
     __renderEventItemsList() {
@@ -24,37 +25,45 @@ export default class Events extends Component {
     }
 
     __sortEventsListByTitle() {
-        console.log('test');
+        const { eventsList } = this.props;
+        const { sortedByName } = this.state;
 
-        const { eventsList, sortedByName } = this.state;
+        let newEventsList = [...eventsList].sort((currentEvent, nextEvent) => {
+            if( !sortedByName ) {
+                return (currentEvent.title > nextEvent.title) ? 1 : -1;
+            }
+        });
 
-        let newState = {};
+        this.setState({
+            eventsList: newEventsList,
+            sortedByName: !sortedByName,
+            sortedByDate: false
+        });
+    }
 
-        if (sortedByName) {
-            const newEventsList = [...eventsList].sort((a, b) => {
-                a.title.charAt(0) > b.title.charAt(0);
+    __sortEventsListByDate() {
+        const { eventsList } = this.props;
+        const { sortedByDate } = this.state;
 
-                console.log(a.title.charAt(0) > b.title.charAt(0));
-            });
+        let newEventsList = [...eventsList].sort((currentEvent, nextEvent) => {
+            if( !sortedByDate ) {
+                const currentDateToArray = currentEvent.dateStart.split('.');
+                const nextDateToArray = nextEvent.dateStart.split('.');
 
-            newState.eventsList = newEventsList;
-            newState.sortedByName = true;
-        } else {
-            const newEventsList = [...eventsList].sort((a, b) => {
-                a.id > b.id;
-            });
+                return new Date(currentDateToArray.reverse()).getTime() - new Date(nextDateToArray.reverse()).getTime();
+            }
+        });
 
-            newState.eventsList = newEventsList;
-            newState.sortedByName = false;
-        }
-
-        this.setState(newState);
-
-        console.log(this.state.eventsList);
+        this.setState({
+            eventsList: newEventsList,
+            sortedByName: false,
+            sortedByDate: !sortedByDate
+        });
     }
 
     render() {
         const { eventsList, sectionTitle } = this.props;
+        const { sortedByName, sortedByDate } = this.state;
 
         return (
             <section className="events l-container">
@@ -68,8 +77,18 @@ export default class Events extends Component {
                         (eventsList.length > 0) ? (
                             <Fragment>
                                 <div className="events__sorter">
-                                    <div className="events__sorter-title" onClick={ this.sortEventsListByTitle }><span>Название соревнования</span></div>
-                                    <div className="events__sorter-date"><span>Дата проведения</span></div>
+                                    <div className = { `events__sorter-title${ (sortedByName) ? ' is-active' : '' }` }
+                                         onClick = { this.sortEventsListByTitle }
+                                    >
+                                        <span>Название соревнования</span>
+                                    </div>
+
+                                    <div className = { `events__sorter-date${ (sortedByDate) ? ' is-active' : '' }` }
+                                         onClick = { this.sortEventsListByDate }
+                                    >
+                                        <span>Дата проведения</span>
+                                    </div>
+                                    
                                     <div className="events__sorter-place">Место проведения</div>
                                 </div>
 
