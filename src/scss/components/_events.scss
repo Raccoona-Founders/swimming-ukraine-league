@@ -1,18 +1,18 @@
 .events {
     &__sorter {
-        background-color: $white;
-        border-bottom: 1px solid #eff0ff;
+        background-color: #e8e8e8;
         border-radius: 4px 4px 0 0;
-        box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);
+        box-shadow: 0 1px 8px 0 rgba(0,0,0,0.2);
         padding: 22px 35px 0;
 
         height: 60px;
         width: 100%;
+        z-index: 1;
 
         &-title,
         &-date,
         &-place {
-            color: #a9a9a9;
+            color: $darkgray;
             font-size: 15px;
 
             @include inline-block;
@@ -31,7 +31,7 @@
                 &:before {
                     content: '';
                     border: 4px solid transparent;
-                    border-top: 6px solid #d6d6d6;
+                    border-top: 6px solid $darkgray;
 
                     transform-origin: 50% 25%;
                     transition: transform 0.2s ease, border-color 0.2s ease;
@@ -62,8 +62,8 @@
 
 .event-item {
     background-color: $white;
-    border-bottom: 1px solid #eff0ff;
-    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.1);
+    border-bottom: 1px solid #eeeeee;
+    box-shadow: 0 1px 8px 0 rgba(0,0,0,0.2);
     padding: 21px 35px 0;
     transition: background-color 0.2s ease;
 
@@ -91,13 +91,12 @@
     }
 
     &:hover {
-        background-color: #f5f6fd;
+        background-color: #f1f1f1;
     }
 
     &:last-child {
         border: 0 0 4px 4px;
         border-bottom: none;
-        
     }
 }
 
@@ -109,11 +108,13 @@
         &-title,
         &-date {
             &.is-active {
-                color: $darkgray;
+                color: $blue;
 
-                &:before {
-                    border-top-color: $darkgray;
-                    transform: rotate(180deg);
+                & span {
+                    &:before {
+                        border-top-color: $blue;
+                        transform: rotate(180deg);
+                    }
                 }
             }
         }

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 export default class Events extends Component {
     render() {
         const { eventsList, sectionTitle } = this.props;
+        const { sortedByName, sortedByDate } = this.state;
 
         return (
             <section className="events l-container">
@@ -17,15 +18,19 @@ export default class Events extends Component {
                         (eventsList.length > 0) ? (
                             <Fragment>
                                 <div className="events__sorter">
-                                    <div className="events__sorter-title">
+                                    <div className = { `events__sorter-title${ (sortedByName) ? ' is-active' : '' }` }
+                                         onClick = { this.sortEventsListByTitle }
+                                    >
                                         <span>Название соревнования</span>
                                     </div>
-                                    <div className="events__sorter-date">
+
+                                    <div className = { `events__sorter-date${ (sortedByDate) ? ' is-active' : '' }` }
+                                         onClick = { this.sortEventsListByDate }
+                                    >
                                         <span>Дата проведения</span>
                                     </div>
-                                    <div className="events__sorter-place">
-                                        Место проведения
-                                    </div>
+                                    
+                                    <div className="events__sorter-place">Место проведения</div>
                                 </div>
 
                                 <div className="events__list">
@@ -50,20 +55,4 @@ export default class Events extends Component {
             return <Event eventData={eventData} key={eventData.id}/>;
         });
     };
-}
-
-function Event(props) {
-    const { id, title, dateStart, dateEnd, city, country } = props.eventData;
-
-    return (
-        <Link className="event-item" to={`/event/${id}`}>
-            <div className="event-item__title">{title}</div>
-            <time className="event-item__date">{
-                (dateStart !== dateEnd)
-                    ? `${dateStart} - ${dateEnd}`
-                    : dateStart
-            }</time>
-            <div className="event-item__place">{city}, {country}</div>
-        </Link>
-    );
 }
