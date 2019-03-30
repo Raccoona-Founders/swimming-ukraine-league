@@ -1,4 +1,4 @@
-.events {
+.members {
     &__container {
         box-shadow: 0 4px 32px 0 rgba(0, 0, 0, 0.1);
     }
@@ -12,22 +12,16 @@
         width: 100%;
         z-index: 1;
 
-        &-title,
-        &-date,
-        &-place {
-            color: $darkgray;
-            font-size: 15px;
-
+        &-name,
+        &-age,
+        &-born,
+        &-sex,
+        &-country {
             @include inline-block;
-        }
 
-        &-title {
-            width: calc(100% - 390px);
-        }
-
-        &-title,
-        &-date {
+            color: $darkgray;
             cursor: pointer;
+            font-size: 15px;
             transition: color 0.2s ease;
 
             & span {
@@ -56,17 +50,29 @@
             }
         }
 
-        &-date {
-            width: 210px;
+        &-name {
+            width: calc(100% - 520px);
         }
 
-        &-place {
+        &-born {
             width: 180px;
+        }
+
+        &-age {
+            width: 120px;
+        }
+
+        &-sex {
+            width: 100px;
+        }
+
+        &-country {
+            width: 120px;
         }
     }
 }
 
-.event-item {
+.member-item {
     background-color: $white;
     border-bottom: 1px solid #eeeeee;
     padding: 21px 35px 0;
@@ -84,9 +90,11 @@
         border-bottom: none;
     }
 
-    &__title,
-    &__date,
-    &__place {
+    &__name,
+    &__born,
+    &__age,
+    &__sex,
+    &__country {
         color: $darkgray;
         font-size: 15px;
         font-weight: 300;
@@ -95,27 +103,38 @@
         @include inline-block;
     }
 
-    &__title {
-        width: calc(100% - 390px);
+    &__name {
+        width: calc(100% - 520px);
     }
 
-    &__date {
-        width: 210px;
-    }
-
-    &__place {
+    &__born {
         width: 180px;
+    }
+
+    &__age {
+        width: 120px;
+    }
+
+    &__sex {
+        width: 100px;
+    }
+
+    &__country {
+        width: 120px;
     }
 }
 
 
 
 // # States
-.events {
+.members {
     &__sorter {
 
-        &-title,
-        &-date {
+        &-name,
+        &-born,
+        &-age,
+        &-sex,
+        &-country {
             &.is-active {
                 color: $blue;
 

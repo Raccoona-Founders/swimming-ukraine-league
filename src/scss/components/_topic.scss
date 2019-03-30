@@ -10,14 +10,14 @@
     }
 
     &__button {
-        background-color: $red;
+        background-color: $blue;
         box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.1);
         border-radius: 4px;
         color: $white;
         cursor: pointer;
         font-size: 15px;
         font-weight: 300;
-        line-height: 26px; 
+        line-height: 26px;
         padding: 0 30px;
         transition: background-color 0.2s ease, color 0.2s ease;
 
@@ -30,6 +30,17 @@
         &:hover {
             background-color: $white;
             color: $red;
+        }
+    }
+}
+
+
+
+// # Modifiers
+.topic {
+    &__button {
+        &--for-admin {
+            background-color: $red;
         }
     }
 }

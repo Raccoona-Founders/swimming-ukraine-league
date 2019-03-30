@@ -13,7 +13,7 @@ import '../scss/main.scss';
         return;
     }
     try {
-        ReactDOM.render(<App/>, ReactAppRoot);
+        ReactDOM.render(<App />, ReactAppRoot);
     } catch (error) {
         console.error(error);
     }

@@ -14,9 +14,9 @@ export default class Login extends React.Component {
     }
 
     __onGoogleLogin = () => {
-        const {User, history} = this.props;
+        const { User, history } = this.props;
 
-        let {from} = this.props.location.state || {from: {pathname: '/'}};
+        let { from } = this.props.location.state || { from: { pathname: '/' } };
 
         if (User.user) {
             history.push(from.pathname);
