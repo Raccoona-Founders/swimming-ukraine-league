@@ -20,7 +20,7 @@ export default class Events extends Component {
         const { eventsList } = this.state;
 
         return eventsList.map((eventData) => {
-            return <EventItem eventData = { eventData } key= { eventData.id }/>
+            return <EventItem eventData={eventData} key={eventData.id} />
         });
     }
 
@@ -29,7 +29,7 @@ export default class Events extends Component {
         const { sortedByName } = this.state;
 
         let newEventsList = [...eventsList].sort((currentEvent, nextEvent) => {
-            if( !sortedByName ) {
+            if (!sortedByName) {
                 return (currentEvent.title > nextEvent.title) ? 1 : -1;
             }
         });
@@ -45,14 +45,16 @@ export default class Events extends Component {
         const { eventsList } = this.props;
         const { sortedByDate } = this.state;
 
-        let newEventsList = [...eventsList].sort((currentEvent, nextEvent) => {
-            if( !sortedByDate ) {
-                const currentDateToArray = currentEvent.dateStart.split('.');
-                const nextDateToArray = nextEvent.dateStart.split('.');
+        let newEventsList = [...eventsList];
 
-                return new Date(currentDateToArray.reverse()).getTime() - new Date(nextDateToArray.reverse()).getTime();
-            }
-        });
+        if (!sortedByDate) {
+            newEventsList = [...eventsList].sort((currentEvent, nextEvent) => {
+                const currentDateToArray = currentEvent.dateStart.split('.').reverse();
+                const nextDateToArray = nextEvent.dateStart.split('.').reverse();
+
+                return new Date(currentDateToArray).getTime() - new Date(nextDateToArray).getTime();
+            });
+        }
 
         this.setState({
             eventsList: newEventsList,
@@ -66,39 +68,39 @@ export default class Events extends Component {
         const { sortedByName, sortedByDate } = this.state;
 
         return (
-            <section className = "events l-container">
-                <div className = "l-content">
-                    <div className = "topic">
-                        <div className = "topic__title">{ sectionTitle }</div>
-                        <button className = "topic__button topic__button--for-admin">Добавить*</button>
+            <section className="events l-container">
+                <div className="l-content">
+                    <div className="topic">
+                        <div className="topic__title">{sectionTitle}</div>
+                        <button className="topic__button topic__button--for-admin">Добавить*</button>
                     </div>
 
                     {
                         (eventsList.length > 0) ? (
-                            <div class = "events__container">
-                                <div className = "events__sorter">
-                                    <div className = { `events__sorter-title${ (sortedByName) ? ' is-active' : '' }` }
-                                         onClick = { this.sortEventsListByTitle }
+                            <div className="events__container">
+                                <div className="events__sorter">
+                                    <div className={`events__sorter-title${(sortedByName) ? ' is-active' : ''}`}
+                                        onClick={this.sortEventsListByTitle}
                                     >
                                         <span>Название соревнования</span>
                                     </div>
 
-                                    <div className = { `events__sorter-date${ (sortedByDate) ? ' is-active' : '' }` }
-                                         onClick = { this.sortEventsListByDate }
+                                    <div className={`events__sorter-date${(sortedByDate) ? ' is-active' : ''}`}
+                                        onClick={this.sortEventsListByDate}
                                     >
                                         <span>Дата проведения</span>
                                     </div>
-                                    
-                                    <div className = "events__sorter-place">Место проведения</div>
+
+                                    <div className="events__sorter-place">Место проведения</div>
                                 </div>
 
-                                <div className = "events__list">
-                                    { this.renderEventItemsList() }
+                                <div className="events__list">
+                                    {this.renderEventItemsList()}
                                 </div>
                             </div>
                         ) : (
-                            <div className = "events__empty">{ sectionTitle } появятся в скором времени</div>
-                        )
+                                <div className="events__empty">{sectionTitle} появятся в скором времени</div>
+                            )
                     }
                 </div>
             </section>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {inject, observer} from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import { withRouter } from 'react-router';
 
 @inject('User')
@@ -19,7 +19,7 @@ export default class Header extends React.Component {
     }
 
     __onLogout = () => {
-        const {User, history} = this.props;
+        const { User, history } = this.props;
 
         history.push('/login');
         User.logout();
@@ -45,7 +45,7 @@ export default class Header extends React.Component {
             <header className="header u-center">
                 <div className="header__container">
                     <div className="header__top">
-                        <a className="header__logo" href="/" onClick={ this.onHeaderLinkClick }>
+                        <a className="header__logo" href="/" onClick={this.onHeaderLinkClick}>
                             {/* Here I will add svg logo */}
                         </a>
 
@@ -58,24 +58,24 @@ export default class Header extends React.Component {
 
                     <div className="header__body">
                         <nav className="header__nav">
-                            { 
+                            {
                                 isUserAdmin ? (
-                                    <a className="header__nav-item header__nav-item--for-admin" href="/clubs" onClick={ this.onHeaderLinkClick }>Команды*</a>
+                                    <a className="header__nav-item header__nav-item--for-admin" href="/clubs" onClick={this.onHeaderLinkClick}>Команды*</a>
                                 ) : ''
                             }
 
-                            <a className="header__nav-item" href="/club" onClick={ this.onHeaderLinkClick }>Команда</a>
-                            <a className="header__nav-item" href="/events" onClick={ this.onHeaderLinkClick }>Соревнования</a>
-                            <a className="header__nav-item" href="/support" onClick={ this.onHeaderLinkClick }>Обратная связь</a>
+                            <a className="header__nav-item" href="/club" onClick={this.onHeaderLinkClick}>Команда</a>
+                            <a className="header__nav-item" href="/events" onClick={this.onHeaderLinkClick}>Соревнования</a>
+                            <a className="header__nav-item" href="/support" onClick={this.onHeaderLinkClick}>Обратная связь</a>
                         </nav>
 
                         <div className="header__auth">
-                            { 
+                            {
                                 User.authUser ? (
-                                    <div className="header__auth-button" onClick={ this.onLogout }>Выйти</div>
+                                    <div className="header__auth-button" onClick={this.onLogout}>Выйти</div>
                                 ) : (
-                                    <div className="header__auth-button" onClick={ this.onLogin }>Войти</div>
-                                )
+                                        <div className="header__auth-button" onClick={this.onLogin}>Войти</div>
+                                    )
                             }
                         </div>
                     </div>

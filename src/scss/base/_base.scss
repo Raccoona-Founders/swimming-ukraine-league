@@ -1,29 +1,29 @@
 html,
 body {
-  margin: 0 auto;
-  overflow-x: hidden;
+    margin: 0 auto;
+    overflow-x: hidden;
 
-  min-height: 100vh;
-  max-width: 1920px; 
+    min-height: 100vh;
+    max-width: 1920px;
 }
 
 body {
-  // background-color: #f5f6ff;
-  background-color: #ffffff;
-  font-family: $font-rubik;
-  font-weight: 300;
-  text-align: center;
+    // background-color: #f5f6ff;
+    background-color: #ffffff;
+    font-family: $font-rubik;
+    font-weight: 300;
+    text-align: center;
 
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -webkit-user-drag: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-user-drag: none;
 
-  @include magic-margin-reset;
+    @include magic-margin-reset;
 }
 
 main {
-  text-align: center;
+    text-align: center;
 }
