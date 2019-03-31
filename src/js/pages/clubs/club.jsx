@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 
-import Events from '../../components/events';
 import Members from '../../components/members';
 
-export default class Home extends Component {
+export default class Club extends Component {
     render() {
         return (
             <main>
-                <Events sectionTitle='Актуальные соревнования' />
                 <Members />
             </main>
         );

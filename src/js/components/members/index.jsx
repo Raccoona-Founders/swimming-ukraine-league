@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import { inject, observer } from 'mobx-react';
+
 import MemberItem from './member-item';
 
+@inject('membersList')
+@observer
 export default class Members extends Component {
     constructor(props) {
         super(props);
@@ -20,6 +24,70 @@ export default class Members extends Component {
         this.sortMembersByAge = this.__sortMembersByAge.bind(this);
         this.sortMembersBySex = this.__sortMembersBySex.bind(this);
         this.sortMembersByCountry = this.__sortMembersByCountry.bind(this);
+    }
+
+    render() {
+        const { 
+            sortedByName, 
+            sortedByBornDate, 
+            sortedByAge,
+            sortedBySex,
+            sortedByCountry
+         } = this.state;
+
+        return (
+            <section className="members l-container u-padding-bottom">
+                <div className="l-content">
+                    <div className="topic">
+                        <div className="topic__title">Участники комады</div>
+                        <button className="topic__button">Добавить</button>
+                    </div>
+
+                    <div className="members__container">
+                        <div className="members__sorter">
+                            <div
+                                className={`members__sorter-name${(sortedByName) ? ' is-active' : ''}`}
+                                onClick={this.sortMembersByName}
+                            >
+                                <span>Имя</span>
+                            </div>
+
+                            <div
+                                className={`members__sorter-born${(sortedByBornDate) ? ' is-active' : ''}`}
+                                onClick={this.sortMembersByBornDate}
+                            >
+                                <span>Дата рождения</span>
+                            </div>
+
+                            <div
+                                className={`members__sorter-age${(sortedByAge) ? ' is-active' : ''}`}
+                                onClick={this.sortMembersByAge}
+                            >
+                                <span>Возраст</span>
+                            </div>
+
+                            <div 
+                                className={`members__sorter-sex${(sortedBySex) ? ' is-active' : ''}`}
+                                onClick={this.sortMembersBySex}
+                            >
+                                <span>Пол</span>
+                            </div>
+
+                            <div 
+                                className={`members__sorter-country${(sortedByCountry) ? ' is-active' : ''}`}
+                                onClick={this.sortMembersByCountry}
+                            >
+                                <span>Страна</span>
+                            </div>
+                        </div>
+
+                        <div className="members__list">
+                            {this.renderMemberItemsList()}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        )
     }
 
     __renderMemberItemsList() {
@@ -135,69 +203,5 @@ export default class Members extends Component {
 
             return new Date(currentMemberBornDateToArray).getTime() - new Date(nextMemberBornDateToArray).getTime();
         });
-    }
-
-    render() {
-        const { 
-            sortedByName, 
-            sortedByBornDate, 
-            sortedByAge,
-            sortedBySex,
-            sortedByCountry
-         } = this.state;
-
-        return (
-            <section className="members l-container u-padding-bottom">
-                <div className="l-content">
-                    <div className="topic">
-                        <div className="topic__title">Участники комады</div>
-                        <button className="topic__button">Добавить</button>
-                    </div>
-
-                    <div className="members__container">
-                        <div className="members__sorter">
-                            <div
-                                className={`members__sorter-name${(sortedByName) ? ' is-active' : ''}`}
-                                onClick={this.sortMembersByName}
-                            >
-                                <span>Имя</span>
-                            </div>
-
-                            <div
-                                className={`members__sorter-born${(sortedByBornDate) ? ' is-active' : ''}`}
-                                onClick={this.sortMembersByBornDate}
-                            >
-                                <span>Дата рождения</span>
-                            </div>
-
-                            <div
-                                className={`members__sorter-age${(sortedByAge) ? ' is-active' : ''}`}
-                                onClick={this.sortMembersByAge}
-                            >
-                                <span>Возраст</span>
-                            </div>
-
-                            <div 
-                                className={`members__sorter-sex${(sortedBySex) ? ' is-active' : ''}`}
-                                onClick={this.sortMembersBySex}
-                            >
-                                <span>Пол</span>
-                            </div>
-
-                            <div 
-                                className={`members__sorter-country${(sortedByCountry) ? ' is-active' : ''}`}
-                                onClick={this.sortMembersByCountry}
-                            >
-                                <span>Страна</span>
-                            </div>
-                        </div>
-
-                        <div className="members__list">
-                            {this.renderMemberItemsList()}
-                        </div>
-                    </div>
-                </div>
-            </section>
-        )
     }
 }

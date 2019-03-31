@@ -15,19 +15,11 @@
         &-title,
         &-date,
         &-place {
-            color: $darkgray;
-            font-size: 15px;
-
             @include inline-block;
-        }
 
-        &-title {
-            width: calc(100% - 390px);
-        }
-
-        &-title,
-        &-date {
+            color: $darkgray;
             cursor: pointer;
+            font-size: 15px;
             transition: color 0.2s ease;
 
             & span {
@@ -54,6 +46,10 @@
                     }
                 }
             }
+        }
+
+        &-title {
+            width: calc(100% - 390px);
         }
 
         &-date {
@@ -87,12 +83,12 @@
     &__title,
     &__date,
     &__place {
+        @include inline-block;
+
         color: $darkgray;
         font-size: 15px;
         font-weight: 300;
         letter-spacing: 0.02em;
-
-        @include inline-block;
     }
 
     &__title {
@@ -113,7 +109,6 @@
 // # States
 .events {
     &__sorter {
-
         &-title,
         &-date {
             &.is-active {
