@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import { observable, action, runInAction } from 'mobx';
 import firebase from 'firebase/app';
-import ApiClient from '../../common/api-client';
 
 export default class UserModel {
     firebaseApp;
@@ -11,13 +10,13 @@ export default class UserModel {
     @observable loading = true;
     @observable user;
 
-    constructor(firebaseApp) {
+    constructor(firebaseApp, apiClient) {
         this.firebaseApp = firebaseApp;
         this.auth = firebaseApp.auth();
         this.auth.languageCode = 'ua';
         this.auth.onAuthStateChanged(this.handlerAuthStateChanged);
 
-        this.apiClient = new ApiClient();
+        this.apiClient = apiClient;
     }
 
     loginViaGoogle = async () => {
@@ -84,7 +83,7 @@ export default class UserModel {
         const me = await this.apiClient.getMe();
 
         runInAction(() => {
-            this.user = { user, me };
+            this.user = {user, me};
         });
     }
 }

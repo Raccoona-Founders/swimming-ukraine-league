@@ -30,4 +30,11 @@ export default class ApiClient {
 
         return data;
     }
+
+
+    async getEvents() {
+        const { data } = await this.client.get('events');
+
+        return data.events;
+    }
 }

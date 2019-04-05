@@ -1,11 +1,11 @@
 import * as admin from 'firebase-admin';
 import * as express from 'express';
+import * as bodyParser from 'body-parser';
 
+import eventRouter from './events-router';
 import authenticate from './authenticate';
 
 let apiRouter = express.Router();
-apiRouter.use(authenticate);
-
 
 apiRouter.get('/', (req, res) => {
     res.send(JSON.stringify({
@@ -14,13 +14,17 @@ apiRouter.get('/', (req, res) => {
     }));
 });
 
-apiRouter.get('/me', (req: any, res) => {
-    res.send(JSON.stringify(req.user));
+apiRouter.get('/me', authenticate, (req: any, res) => {
+    res.send(req.user);
 });
+
+
+apiRouter.use('/events', eventRouter);
+
 
 apiRouter.all('/*', (req, res) => {
     res.status(404).send(JSON.stringify({
-        error: 'Method not found'
+        error: 'Method not found',
     }));
 });
 

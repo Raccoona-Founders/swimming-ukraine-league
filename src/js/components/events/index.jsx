@@ -1,30 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
+import moment from 'moment';
+import ReactTable from 'react-table';
 import { inject, observer } from 'mobx-react';
 
-import EventItem from './event-item';
-
-@inject('eventsList')
+@inject('Event')
 @observer
-export default class Events extends Component {
-    constructor(props) {
-        super(props);
+export default class Events extends React.Component {
+    render() {
+        const {sectionTitle, Event} = this.props;
 
-        this.state = {
-            sortedByName: false,
-            sortedByDate: false,
-            sortedByPlace: false,
-            eventsList: [...this.props.eventsList],
+        if (Event.loading) {
+            return <div>Loading table</div>;
         }
 
-        this.renderEventItemsList = this.__renderEventItemsList.bind(this);
-        this.sortEventsListByTitle = this.__sortEventsListByTitle.bind(this);
-        this.sortEventsListByDate = this.__sortEventsListByDate.bind(this);
-        this.sortEventsListByPlace = this.__sortEventsListByPlace.bind(this);
-    }
-
-    render() {
-        const { eventsList, sectionTitle } = this.props;
-        const { sortedByName, sortedByDate, sortedByPlace } = this.state;
+        const columns = [{
+            Header: 'Название соревнования',
+            accessor: 'title'
+        }, {
+            id: 'date',
+            Header: 'Дата проведения',
+            accessor: this.dateAccessor,
+        }, {
+            id: 'place',
+            Header: 'Место проведения',
+            accessor: this.placeAccessor,
+        }];
 
         return (
             <section className="events l-container">
@@ -34,113 +34,33 @@ export default class Events extends Component {
                         <button className="topic__button topic__button--for-admin">Добавить*</button>
                     </div>
 
-                    {
-                        (eventsList.length > 0) ? (
-                            <div className="events__container">
-                                <div className="events__sorter">
-                                    <div className={`events__sorter-title${(sortedByName) ? ' is-active' : ''}`}
-                                        onClick={this.sortEventsListByTitle}
-                                    >
-                                        <span>Название соревнования</span>
-                                    </div>
-
-                                    <div className={`events__sorter-date${(sortedByDate) ? ' is-active' : ''}`}
-                                        onClick={this.sortEventsListByDate}
-                                    >
-                                        <span>Дата проведения</span>
-                                    </div>
-
-                                    <div className={`events__sorter-place${(sortedByPlace) ? ' is-active' : ''}`}
-                                        onClick={this.sortEventsListByPlace}>
-                                        <span>Место проведения</span>
-                                    </div>
-                                </div>
-
-                                <div className="events__list">
-                                    {this.renderEventItemsList()}
-                                </div>
-                            </div>
-                        ) : (
-                            <div className="events__empty">{sectionTitle} появятся в скором времени</div>
-                        )
-                    }
+                    <ReactTable
+                        data={Event.eventList}
+                        columns={columns}
+                        loading={Event.loading || Event.eventList === 0}
+                        noDataText={`${sectionTitle} появятся в скором времени`}
+                        minRows={5}
+                        showPagination={false}
+                        showPageJump={false}
+                    />
                 </div>
             </section>
         );
     }
 
-    __renderEventItemsList() {
-        const { eventsList } = this.state;
+    dateAccessor = (d) => {
+        const start = moment(d.dateStart).format('DD MMM');
+        const end = moment(d.dateEnd).format('DD MMM');
 
-        return eventsList.map((eventData) => {
-            return <EventItem eventData={eventData} key={eventData.id} />
-        });
-    }
-
-    __sortEventsListByTitle() {
-        const { eventsList } = this.props;
-        const { sortedByName } = this.state;
-
-        let newEventsList;
-
-        if (!sortedByName) {
-            newEventsList = [...eventsList].sort((currentEvent, nextEvent) => {
-                return (currentEvent.title > nextEvent.title) ? 1 : -1;
-            });
+        if (start !== end) {
+            return start + ' - ' + end;
         }
 
-        this.setState({
-            eventsList: (newEventsList) ? newEventsList : eventsList,
-            sortedByName: !sortedByName,
-            sortedByDate: false,
-            sortedByPlace: false
-        });
-    }
+        return start;
+    };
 
-    __sortEventsListByDate() {
-        const { eventsList } = this.props;
-        const { sortedByDate } = this.state;
 
-        let newEventsList;
-
-        if (!sortedByDate) {
-            newEventsList = [...eventsList].sort((currentEvent, nextEvent) => {
-                const currentDateToArray = currentEvent.dateStart.split('.').reverse();
-                const nextDateToArray = nextEvent.dateStart.split('.').reverse();
-
-                return new Date(currentDateToArray).getTime() - new Date(nextDateToArray).getTime();
-            });
-        }
-
-        this.setState({
-            eventsList: (newEventsList) ? newEventsList : eventsList,
-            sortedByName: false,
-            sortedByDate: !sortedByDate,
-            sortedByPlace: false
-        });
-    }
-
-    __sortEventsListByPlace() {
-        const { eventsList } = this.props;
-        const { sortedByPlace } = this.state;
-
-        let newEventsList;
-
-        if (!sortedByPlace) {
-            newEventsList = [...eventsList].sort((currentEvent, nextEvent) => {
-                if (currentEvent.country === nextEvent.country) {
-                    return (currentEvent.city > nextEvent.city) ? 1 : -1;
-                }
-
-                return (currentEvent.country > nextEvent.country) ? 1 : -1;
-            });
-        }
-
-        this.setState({
-            eventsList: (newEventsList) ? newEventsList : eventsList,
-            sortedByName: false,
-            sortedByDate: false,
-            sortedByPlace: !sortedByPlace
-        });
-    }
+    placeAccessor = (d) => {
+        return `${d.city}, ${d.country}`;
+    };
 }
