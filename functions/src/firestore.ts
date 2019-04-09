@@ -7,7 +7,7 @@ if (!serviceAccount) {
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://swiming-ukraine-league.firebaseio.com'
+    databaseURL: 'https://swiming-ukraine-league.firebaseio.com',
 });
 
 export const db = admin.firestore();
@@ -16,4 +16,4 @@ db.settings({
     timestampsInSnapshots: true,
 });
 
-export default {db};
+export default { db };

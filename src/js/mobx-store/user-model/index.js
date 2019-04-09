@@ -2,6 +2,8 @@ import _ from 'lodash';
 import { observable, action, runInAction } from 'mobx';
 import firebase from 'firebase/app';
 
+import TeamModel from './team-model';
+
 export default class UserModel {
     firebaseApp;
     auth;
@@ -9,6 +11,7 @@ export default class UserModel {
 
     @observable loading = true;
     @observable user;
+    @observable team;
 
     constructor(firebaseApp, apiClient) {
         this.firebaseApp = firebaseApp;
@@ -52,6 +55,7 @@ export default class UserModel {
     handlerAuthStateChanged = async (authUser) => {
         if (this.user && !authUser) {
             this.user = undefined;
+            this.team = undefined;
 
             this.apiClient.removeAuthToken();
         } else if (!this.user && authUser) {
@@ -70,6 +74,7 @@ export default class UserModel {
         } catch (error) {
             runInAction(() => {
                 this.user = undefined;
+                this.team = undefined;
                 this.apiClient.removeAuthToken();
             });
         }
@@ -81,9 +86,11 @@ export default class UserModel {
         this.apiClient.setAuthToken(authToken);
 
         const me = await this.apiClient.getMe();
+        const team = await this.apiClient.getTeam();
 
         runInAction(() => {
             this.user = {user, me};
+            this.team = new TeamModel(team, this.apiClient);
         });
     }
 }

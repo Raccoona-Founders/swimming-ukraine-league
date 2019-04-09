@@ -31,9 +31,19 @@ export default class ApiClient {
         return data;
     }
 
+    async getTeam() {
+        const { data } = await this.client.get('/team', {
+            headers: {
+                Authorization: `Bearer ${this.authToken}`,
+            },
+        });
+
+        return data;
+    }
+
 
     async getEvents() {
-        const { data } = await this.client.get('events');
+        const {data} = await this.client.get('events');
 
         return data.events;
     }

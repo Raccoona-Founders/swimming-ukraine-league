@@ -1,9 +1,9 @@
 import * as admin from 'firebase-admin';
 import * as express from 'express';
-import * as bodyParser from 'body-parser';
 
-import eventRouter from './events-router';
 import authenticate from './authenticate';
+import eventRouter from './events-router';
+import teamRouter from './team-router';
 
 let apiRouter = express.Router();
 
@@ -15,11 +15,12 @@ apiRouter.get('/', (req, res) => {
 });
 
 apiRouter.get('/me', authenticate, (req: any, res) => {
-    res.send(req.user);
+    res.send(req.user.data());
 });
 
 
 apiRouter.use('/events', eventRouter);
+apiRouter.use('/team', teamRouter);
 
 
 apiRouter.all('/*', (req, res) => {

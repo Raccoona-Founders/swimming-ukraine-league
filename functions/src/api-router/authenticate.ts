@@ -1,10 +1,9 @@
 import * as admin from 'firebase-admin';
-import {db} from '../firestore';
+import App from '../firestore';
 
-
-async function resolveUser(decodedIdToken: admin.auth.DecodedIdToken): Promise<Object> {
+async function resolveUser(decodedIdToken: admin.auth.DecodedIdToken): Promise<admin.firestore.DocumentSnapshot> {
     const user = await admin.auth().getUser(decodedIdToken.uid);
-    const userRef = db.collection('users')
+    const userRef = App.db.collection('users')
         .doc(decodedIdToken.uid);
 
     let snapshot = await userRef.get();
@@ -15,13 +14,13 @@ async function resolveUser(decodedIdToken: admin.auth.DecodedIdToken): Promise<O
             photoUrl: user.photoURL || '',
             email: user.email || '',
             role: 'user',
-            creationTime: admin.firestore.Timestamp.now()
+            creationTime: admin.firestore.Timestamp.now(),
         });
     }
 
     snapshot = await userRef.get();
 
-    return snapshot.data();
+    return snapshot;
 }
 
 
