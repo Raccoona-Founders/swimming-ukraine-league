@@ -1,6 +1,6 @@
+import * as express from 'express';
 import * as functions from 'firebase-functions';
 import './firestore';
-import * as express from 'express';
 
 import htmlTemplate from './html-template';
 import apiRouter from './api-router';
