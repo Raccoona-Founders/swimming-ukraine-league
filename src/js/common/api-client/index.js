@@ -38,7 +38,7 @@ export default class ApiClient {
             },
         });
 
-        return data;
+        return data.team;
     }
 
 
